@@ -32,7 +32,9 @@
 
                 @include('../admin/partials/aside')
             @endauth
-            @yield('content')
+            <div class="my_wrapper">
+                @yield('content')
+            </div>
         </div>
     </div>
 </body>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Functions\Helper;
+use App\Http\Requests\ItemRequest;
 
 class ItemController extends Controller
 {
@@ -29,7 +30,7 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
         $data = $request->all();
         $data['slug'] = Helper::generateSlug($data['title'], Item::class);
@@ -47,7 +48,7 @@ class ItemController extends Controller
     public function show(string $id)
     {
         $item = Item::find($id);
-        return view('admin.items.details', compact('item'));
+        return view('admin.items.show', compact('item'));
     }
 
     /**
@@ -55,15 +56,24 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Item::find($id);
+        return view('admin.items.edit', compact('item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ItemRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+        $item = Item::find($id);
+        if($item->title != $data['title']){
+            $data['slug'] = Helper::generateSlug($data['title'], Item::class);
+        }
+        $item->update($data);
+
+        return redirect()->route('admin.items.show', $item);
+
     }
 
     /**
