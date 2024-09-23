@@ -38,7 +38,8 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $item = Item::find($id);
+        return view('admin.items.details', compact('item'));
     }
 
     /**

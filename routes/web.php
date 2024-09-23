@@ -33,6 +33,7 @@ Route::middleware(['auth','verified'])
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('home');
         Route::get('/items', [ItemController::class, 'index'])->name('allitems');
+        Route::get('/items/{id}', [ItemController::class, 'show'])->name('details');
     });
 
 require __DIR__.'/auth.php';

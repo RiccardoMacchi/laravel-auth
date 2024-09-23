@@ -10,6 +10,7 @@
                     <th scope="col">Linguaggi</th>
                     <th scope="col">Link a GitHub</th>
                     <th scope="col">Descrizione</th>
+                    <th scope="col">Azioni</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,9 @@
                         <td>{{ $item->lenguages }}</td>
                         <td>{{ $item->git_link }}</td>
                         <td>{{ $item->description }}</td>
+                        <td>
+                            <a href="{{ route('admin.details', ['id' => $item->id]) }}">Dettaglio</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
