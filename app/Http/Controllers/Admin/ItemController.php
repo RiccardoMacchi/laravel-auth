@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Functions\Helper;
 
 class ItemController extends Controller
 {
@@ -22,7 +23,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.items.create');
     }
 
     /**
@@ -30,7 +31,14 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Helper::generateSlug($data['title'], Item::class);
+        $new_item = new Item();
+
+        $new_item->fill($data);
+
+        $new_item->save();
+        return redirect()->route('admin.items.show', $new_item->id);
     }
 
     /**
