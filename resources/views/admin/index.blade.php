@@ -3,21 +3,16 @@
 @section('content')
     <div class="container">
         <h2 class="fs-4 text-secondary my-4">
-            {{ __('Dashboard') }}
+            BENVENUTO: {{ Auth::user()->name }}
         </h2>
         <div class="row justify-content-center">
             <div class="col">
-                <div class="card">
-                    <div class="card-header">{{ __('User Dashboard') }}</div>
+                <div class="card text-center">
+                    <div class="card-header">DASHBOARD USER: {{ Auth::user()->id }}</div>
 
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are logged in!') }}
+                        <a class="btn btn-warning" href="{{ route('admin.items.create') }}">AGGIUNGI UN LAVORO</a>
+                        <a class="btn btn-primary" href="{{ route('admin.items.index') }}">VAI A TUTTI I LAVORI</a>
                     </div>
                 </div>
             </div>

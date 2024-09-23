@@ -15,8 +15,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::orderBy('title')->get();
-        return view('admin.items.index', compact('items'));
+        $title = 'I miei Lavori'
+;       $items = Item::orderBy('title')->get();
+        return view('admin.items.index', compact('items','title'));
     }
 
     /**
@@ -24,7 +25,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.items.create');
+        $title = 'Aggiungi un nuovo lavoro';
+        return view('admin.items.create', compact('title'));
     }
 
     /**
@@ -57,7 +59,8 @@ class ItemController extends Controller
     public function edit(string $id)
     {
         $item = Item::find($id);
-        return view('admin.items.edit', compact('item'));
+        $title = 'Stai modificando ' . $item->title;
+        return view('admin.items.edit', compact('item','title'));
     }
 
     /**

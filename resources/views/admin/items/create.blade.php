@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <h1>{{ $title }}</h1>
         {{-- @if ($errors->any())
             @foreach ($errors->all() as $error)
                 <small>{{ $error }}</small>

@@ -1,5 +1,5 @@
 <header>
-    <div class="container-fluid bg-dark text-white d-flex justify-content-between px-3">
+    <div class="container-fluid bg-dark text-white d-flex justify-content-between px-3" id="my_navbar">
         <div>
             <a href="{{ route('home') }}" target="_blank">Vai al sito</a>
         </div>

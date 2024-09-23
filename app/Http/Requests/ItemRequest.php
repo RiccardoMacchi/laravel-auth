@@ -22,11 +22,11 @@ class ItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'min:1', 'max:100'],
-            'git_link' => ['required', 'string', 'min:1', 'max:255'],
-            'lenguages' => ['required', 'string', 'min:1', 'max:255'],
+            'title' => ['required', 'string', 'min:5', 'max:100'],
+            'git_link' => ['required', 'string', 'min:5', 'max:255'],
+            'lenguages' => ['required', 'string', 'min:2', 'max:255'],
             'date' => ['required', 'date'],
-            'description' => ['required', 'string'],
+            'description' => ['required', 'string','min:10'],
         ];
     }
 
@@ -35,17 +35,17 @@ class ItemRequest extends FormRequest
         return [
             'title.required' => 'Il titolo è obbligatorio.',
             'title.string' => 'Il titolo deve essere una stringa.',
-            'title.min' => 'Il titolo deve avere almeno 1 carattere.',
+            'title.min' => 'Il titolo deve avere almeno 5 carattere.',
             'title.max' => 'Il titolo non può superare i 100 caratteri.',
 
             'git_link.required' => 'Il link Git è obbligatorio.',
             'git_link.string' => 'Il link Git deve essere una stringa.',
-            'git_link.min' => 'Il link Git deve avere almeno 1 carattere.',
+            'git_link.min' => 'Il link Git deve avere almeno 5 carattere.',
             'git_link.max' => 'Il link Git non può superare i 255 caratteri.',
 
             'lenguages.required' => 'Il campo linguaggi è obbligatorio.',
             'lenguages.string' => 'Il campo linguaggi deve essere una stringa.',
-            'lenguages.min' => 'Il campo linguaggi deve avere almeno 1 carattere.',
+            'lenguages.min' => 'Il campo linguaggi deve avere almeno 2 carattere.',
             'lenguages.max' => 'Il campo linguaggi non può superare i 255 caratteri.',
 
             'date.required' => 'La data è obbligatoria.',
@@ -53,6 +53,8 @@ class ItemRequest extends FormRequest
 
             'description.required' => 'La descrizione è obbligatoria.',
             'description.string' => 'La descrizione deve essere una stringa.',
+            'description.min' => 'La descrizione deve avere almeno 10 carattere.',
+
         ];
     }
 }
