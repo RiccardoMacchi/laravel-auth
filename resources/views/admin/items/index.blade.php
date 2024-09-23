@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container my_wrapper">
         <table class="table">
             <thead>
                 <tr>
@@ -22,7 +22,13 @@
                         <td>{{ $item->git_link }}</td>
                         <td>{{ $item->description }}</td>
                         <td>
-                            <a href="{{ route('admin.details', ['id' => $item->id]) }}">Dettaglio</a>
+                            <a href="{{ route('admin.items.show', ['item' => $item->id]) }}">Dettaglio</a>
+                            <form action="{{ route('admin.items.destroy', ['item' => $item->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onsubmit="return confirm('Vuoi davvero eliminare {{ $item->title }}?')">DELETE</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
